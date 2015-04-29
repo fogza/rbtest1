@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require js/bootstrap.min
+//= require app.min
+//= require slimScroll/jquery.slimscroll.min
+//= require fastclick/fastclick.min
+//= --require turbolinks
+//= --require_tree .

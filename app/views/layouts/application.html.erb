@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rbtest1</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<%= render 'layouts/html_header', pageTitle: defined?(@pageTitle) ? @pageTitle : 'Dashboard' %>
+	<%= content_for?(:style) ? yield(:style) : "" %>
+  	<%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= defined?(@bodyClass) ? @bodyClass : 'skin-blue sidebar-mini' %>">
+	<!-- wrapper -->
+    <div class="wrapper">
+    	<%= render 'layouts/header_menu' %>
+    	<!-- Left side column. contains the sidebar -->
+    	<%= render 'layouts/sidebar_menu' %>
+		<!-- Right side column. Contains the navbar and content of the page -->
+    	<div class="content-wrapper">
+    		<!-- Content Header (Page header) -->
+    		<section class="content-header">
+    			<h1><%= defined?(@pageTitle) ? @pageTitle : nil %></h1>
+    			<ol class="breadcrumb">
+		            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		            <li><a href="#">Examples</a></li>
+		            <li class="active">Blank page</li>
+		        </ol>
+		        <!-- END Breadcrumb -->
+    		</section>
 
-<%= yield %>
+    		<!-- Main content -->
+    		<section class="content">
+				<%= yield %>
+    		</section>
+    	</div>
+    	<!-- /.content-wrapper -->
 
+    	<footer class="main-footer">
+	        <div class="pull-right hidden-xs"><b>Version</b> 1.0</div>
+	        <strong>Copyright © 2014-2015 <a href=""><%= Rails.application.class.parent %></a>.</strong> All rights reserved.
+	    </footer>
+	</div>
+	<!-- /.wrapper -->
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
